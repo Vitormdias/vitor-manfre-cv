@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/Vitormdias/vitor-manfre-cv/issues"
   },
-  "homepage": "https://github.com/Vitormdias/vitor-manfre-cv#readme"
+  "homepage": "https://github.com/Vitormdias/vitor-manfre-cv#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "inquirer": "^6.2.2"
+  },
+  "bin": {
+    "vitor-manfre-cv": "./index.js"
+  }
 }
