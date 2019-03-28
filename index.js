@@ -1,52 +1,72 @@
 #!/usr/bin/env node
 "use strict";
 
-var inquirer = require("inquirer");
-var chalk = require("chalk");
+const inquirer = require("inquirer");
+const chalk = require("chalk");
 
-var response = chalk.bold.green;
+const resume = require("./resume.json");
 
-var resume = require("./resume.json");
-
-var resumePrompts = {
-  type: "list",
-  name: "resumeOptions",
-  message: "What do you want to know about me?",
-  choices: [...Object.keys(resume), "Exit"]
-};
-
-function main() {
-  console.log("Hello,My name is Vitor Manfré and welcome to my resume");
-  resumeHandler();
+const main = () => {
+  display("Hello, my name is Vitor Manfré and welcome to my resume");
+  resumeHandler(resume);
 }
 
-function resumeHandler() {
-  inquirer.prompt(resumePrompts).then(answer => {
-    if (answer.resumeOptions == "Exit") {
-      return;
-    }
-    var option = answer.resumeOptions;
-    console.log(response("--------------------------------------"));
-    resume[`${option}`].forEach(info => {
-      console.log(response("|   => " + info));
-    });
-    console.log(response("--------------------------------------"));
-    // console.log(resume[`${option}`]);
-    inquirer
-      .prompt({
-        type: "list",
-        name: "exitBack",
-        message: "Go back or Exit?",
-        choices: ["Go Back", "Exit"]
-      })
-      .then(choice => {
-        if (choice.exitBack == "Go Back") {
-          resumeHandler();
-        } else {
-          return;
-        }
-      });
+const resumeHandler = (resume) => {
+  const resumePrompts = {
+    type: "list",
+    name: "selectedOption",
+    message: "What do you want to know about me?",
+    choices: [...Object.keys(resume), "Exit"]
+  };
+
+  inquirer
+    .prompt(resumePrompts)
+    .then(optionHandler)
+    .then(answerHandler)
+    .then(returnInquireHandler)
+    .catch(endHandler);
+}
+
+const answerHandler = answer => displayAnswer(resume, answer)
+
+const optionHandler = (({ selectedOption }) => {
+  switch (selectedOption) {
+    case 'Exit':
+      throw new Error('END');
+    case 'Go Back':
+      resumeHandler();
+    default:
+      return selectedOption
+  }
+})
+
+const displayAnswer = (resume, answer) => {
+  display("--------------------------------------");
+  resume[`${answer}`].map(info => {
+    display("|   => " + info);
   });
+  display("--------------------------------------");
+}
+
+const returnInquireHandler = () => {
+  const returnPrompts = {
+    type: "list",
+    name: "selectedOption",
+    message: "Go back or Exit?",
+    choices: ["Go Back", "Exit"]
+  }
+
+  inquirer
+    .prompt(returnPrompts)
+    .then(optionHandler)
+    .catch(endHandler);
+}
+
+const endHandler = () => display('Thanks for reading about me!')
+
+const display = content => {
+  const response = chalk.bold.green;
+  console.log(response(content))
 }
 
 main();
