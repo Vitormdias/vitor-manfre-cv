@@ -34,7 +34,7 @@ const optionHandler = (({ selectedOption }) => {
     case 'Exit':
       throw new Error('END');
     case 'Go Back':
-      resumeHandler();
+      resumeHandler(resume);
     default:
       return selectedOption
   }
