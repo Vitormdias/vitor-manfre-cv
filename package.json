@@ -1,6 +1,6 @@
 {
-  "name": "vitor-manfre-cv",
-  "version": "1.1.2",
+  "name": "vitor-manfre",
+  "version": "1.0.0",
   "description": "My personal CV made as a node CLI and published at npm",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
     "inquirer": "^6.2.2"
   },
   "bin": {
-    "vitor-manfre-cv": "./index.js"
+    "vitor-manfre": "./index.js"
   }
 }
