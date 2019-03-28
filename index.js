@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 
 var inquirer = require("inquirer");
@@ -36,10 +37,10 @@ function resumeHandler() {
         type: "list",
         name: "exitBack",
         message: "Go back or Exit?",
-        choices: ["Back", "Exit"]
+        choices: ["Go Back", "Exit"]
       })
       .then(choice => {
-        if (choice.exitBack == "Back") {
+        if (choice.choices == "Go Back") {
           resumeHandler();
         } else {
           return;
