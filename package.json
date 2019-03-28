@@ -1,0 +1,23 @@
+{
+  "name": "vitor-manfre-cv",
+  "version": "1.0.0",
+  "description": "My personal CV made as a node CLI and published at npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vitormdias/vitor-manfre-cv.git"
+  },
+  "keywords": [
+    "CV",
+    "Manfre"
+  ],
+  "author": "Vitor Manfré",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vitormdias/vitor-manfre-cv/issues"
+  },
+  "homepage": "https://github.com/Vitormdias/vitor-manfre-cv#readme"
+}
