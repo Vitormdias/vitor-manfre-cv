@@ -40,7 +40,7 @@ function resumeHandler() {
         choices: ["Go Back", "Exit"]
       })
       .then(choice => {
-        if (choice.choices == "Go Back") {
+        if (choice.exitBack == "Go Back") {
           resumeHandler();
         } else {
           return;
